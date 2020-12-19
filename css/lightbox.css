@@ -1,0 +1,124 @@
+/* .OVERLAY ADALAH DIV YANG MEMILIKI IMAGE */
+.overlay {
+    /* POSITION KETIKA DICLICK TIDAK MENGGANGGU ELEMENT DIBELAKANGNYA */
+    position: fixed;
+    /* MEMBUAT DIMENSI ELEMENT SATU LAYAR */
+    top: 0;
+    left: 0;
+    /* Z-INDEX UNTUK MENUTUPI ELEMEN-ELEMEN NONSTATIK */
+    z-index: 999;
+    transition: .8s;
+    /* TERNYATA TEXT-ALIGN BISA BUAT IMAGE.. HIHI */
+    text-align: center;
+
+    padding: 100px;
+
+    /* POSISI AWAL SEBELUM DITARGET  */
+    width: 0;
+    height: 0;
+    background: rgba(0, 0, 0, 0);
+    overflow: hidden;
+    /* OVERFLOW DIATAS UNTUK HIDDEN IMAGE DI POSISI AWAL */
+}
+
+.overlay:target {
+    /* PROPERTY DIBAWAH DIAMBIL DARI POSISI AWAL
+AGAR KETIKA DITARGET BISA MUNCUL LAYAR FULL */
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.664);
+    /* AGAR MUNCUL IMAGENYA ATAU KELUAR DARI OVERFLOW:HIDDEN */
+    height: auto;
+    width: auto;
+}
+
+/*MAX-HEIGHT 100% AGAR KLO BROWSING DI KECILIN ATAU DIBESARIN
+TINGGINYA AKAN MENYESUAIKAN */
+.overlay img {
+    max-height: 100%;
+
+    box-shadow: 2px 2px 7px rgba(218, 215, 215, 0.733);
+}
+
+.overlay:target img {
+    animation: zoomdanfade 1s
+}
+
+.overlay .close {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    margin-left: -10px;
+    color: white;
+    text-decoration: none;
+    background-color: black;
+    border: 1px solid white;
+    /* DENGAN MENULIS LINE HEIGHT MAKA LINE HEIGHT PADA PARENTNYA JADI CLEAR */
+    line-height: 14px;
+    padding: 6px;
+    opacity: 0;
+}
+
+.overlay:target .close {
+    animation: slidedown .5s .5s forwards;
+}
+
+/* ANIMASI  */
+@keyframes zoomdanfade {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slidedown {
+    0% {
+        opacity: 0;
+        margin-top: -15px;
+    }
+
+    100% {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+/* NAVIGASI */
+.next,
+.previous {
+    width: 114px;
+    height: 186px;
+    background-image: url(../img/next.png);
+    position: absolute;
+    text-indent: -9999px;
+    top: 45%;
+    margin-left: 50px;
+    opacity: 0;
+}
+
+.previous {
+    background-image: url(../img/previous.png);
+    margin-left: -150px;
+}
+
+.overlay:target .next,
+.overlay:target .previous {
+    animation: fadeajah .5s .5s forwards;
+}
+
+/* ANIMASI BUAT NAVIGASI */
+
+@keyframes fadeajah {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

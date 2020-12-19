@@ -1,0 +1,98 @@
+/* font */
+
+@font-face {
+    font-family: 'bebas_neueregular';
+    src: url('../font/bebasneue-regular-webfont.woff2') format('woff2'),
+        url('../font/bebasneue-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* style utama */
+body {
+    font-family: 'bebas_neueregular';
+    font-size: 18px;
+    line-height: 32px;
+    background-color: #ddd;
+
+
+
+}
+
+h1 {
+    font-size: 80px;
+    margin: 50px 0;
+    text-align: center;
+    text-shadow: 0 0 3px hsla(0, 23%, 18%, .5)
+}
+
+.container {
+    width: 600px;
+    background-color: white;
+    margin: auto;
+    padding: 30px;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, .5);
+    border-radius: 5px;
+
+}
+
+/* MASKING IMAGE DENGAN OVERFLOW:HIDDEN  */
+.gallery li {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border: 3px solid grey;
+    float: left;
+    margin-right: 24px;
+    /* POSITION:RELATIVE PADA PARENT:RELATIVE
+    SUPAYA BERADA DIMENSI YANG SAMA DENGAN TULISAN/SPAN YANG LARI 
+    KELUAR DIMENSI */
+    position: relative;
+}
+
+/* AGAR CONTAINER MEMBESAR MENGIKUTI BESARNYA ELEMEN  */
+.clear {
+    clear: both;
+}
+
+/* UNTUK MODIFIKASI TULISAN (NAMA PELARI  */
+/* SPAN DEFAULTNYA INLINE YAITU HEIGHT DAN WEIGHT TIDAK BISA DIMODIFIKASI
+AGAR BISA DIMODIFIKASI POSITION:BLOCK */
+
+.gallery li span {
+    display: block;
+    width: 120px;
+    height: 120px;
+    background-color: rgba(65, 65, 218, .5);
+    /* MEMPOSISIKAN TULISAN DIATAS GAMBAR
+    DENGAN POSITION:ABSOLUTE DAN TOP:0 */
+    position: absolute;
+    top: 0;
+    text-align: center;
+    line-height: 120px;
+    color: white;
+    text-shadow: 1px 1px 1px rgb(10, 8, 8);
+    /* MEMBERIKAN EFFECT AGAR MUNCUL KETIKA DIHOVER 
+    DENGAN KEADAAN AWAL OPACITY:0 DAN TRANSFORM SEPERTI DIBAWA */
+    opacity: 0;
+    transition: .3s;
+    transform: scale(0) rotate(0);
+}
+
+/* KETIKA DIHOVER MUNCUL SPANNYA */
+/* TRANSFORM DAN OPACITY MEMBERIKAN EFFECT PADA SPAN */
+/* URUTAN PROPERTY HARUS SAMA DENGAN KEADAAN AWAL */
+
+.gallery li a:hover span {
+    opacity: 1;
+    transform: scale(1) rotate(360deg);
+}
+
+/* MENGGABUNGKAN ELEMENT UNTUK PROPERTY YANG SAMA */
+
+.gallery li,
+.gallery li a img,
+.gallery li span {
+    border-radius: 50%;
+}
